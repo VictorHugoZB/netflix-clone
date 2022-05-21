@@ -1,7 +1,15 @@
+@font-face {
+  font-family: "Netflix Sans Regular";
+  src: url('/assets/fonts/NetflixSansRegular.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: "Netflix Sans Bold";
+  src: url('/assets/fonts/NetflixSansBold.ttf') format('ttf');
+}
+
 html,
 body {
-  padding: 0;
-  margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
@@ -13,4 +21,13 @@ a {
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Netflix Sans Regular", "roboto", sans-serif;
+  color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Netflix Sans Bold", "roboto", sans-serif;
+  color: white;
 }

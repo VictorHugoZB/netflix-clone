@@ -1,4 +1,6 @@
 import styled from '@emotion/styled';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import MainButton from '../Shared/Buttons/MainButton';
 
 const BASE_IMG = 'https://image.tmdb.org/t/p/original';
 
@@ -22,17 +24,18 @@ const ContentContainer = styled.div`
 
 const Info = styled.div`
   position: absolute;
-  max-width: 40%;
-  top: 20%;
+  max-width: 45%;
+  top: 50%;
+  transform: translateY(-50%);
   padding: 40px;
 `;
 
 const Title = styled.h1`
-  padding: 1rem 0;
+  padding: .5rem 0;
 `;
 
 const P = styled.p`
- padding: 1rem 0;
+ padding: .5rem 0 1rem;
  color: #ccc;
  line-height: 1.4;
 `;
@@ -47,6 +50,7 @@ export default function Banner({ movie }: { movie: any }) {
         <Info>
           <Title>{movie?.title || ''}</Title>
           <P>{truncate(movie?.overview || '')}</P>
+          <MainButton Icon={ErrorOutlineIcon} onClick={() => {}}>Mais informações</MainButton>
         </Info>
       </ContentContainer>
     </>

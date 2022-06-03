@@ -35,7 +35,7 @@ const IconArrowMenu = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 0 15px;
+  padding: 0; 
 
   #dropdown-arrow {
     transform: rotate(0deg);
@@ -51,18 +51,21 @@ const IconArrowMenu = styled.div`
   }
 `;
 
-const FilterContainer = styled.div<{ extended: boolean }>`
+const FilterContainer = styled.div<{ expanded: boolean }>`
   height: 100%;
   position: relative;
 
   input {
-    padding: ${({ extended }) => (extended ? '5px 30px' : '0')};
-    max-width: ${({ extended }) => (extended ? '200px' : '0px')};
+    padding: 0;
+    max-width: ${({ expanded }) => (expanded ? '250px' : '0')};
     background-color: black;
     outline: none;
-    border: 2px solid white;
-    transition: all .5s fade-in-out;
+    transition: all .2s;
     height: 100%;
+    border: ${({ expanded }) => (expanded ? '2px solid white' : 'none')};
+    ${({ expanded }) => expanded && `
+      padding: 10px 30px;
+    `}
   }
 
   .icon {
@@ -73,12 +76,12 @@ const FilterContainer = styled.div<{ extended: boolean }>`
   }
 
   .icon:nth-of-type(1) {
-    left: 5px;
+    left: ${({ expanded }) => (expanded ? '5px' : '-25px')};
+    transition: left .3s;
   }
 
   .icon:nth-of-type(2) {
     right: 5px;
-    display: none;
   }
 `;
 
@@ -107,7 +110,8 @@ const navigateItems = [
 
 export default function Navbar() {
   const [isOnTop, setIsOnTop] = useState(true);
-  const [extended, setExtended] = useState(false);
+  const [filterValue, setFilterValue] = useState('');
+  const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const listener = () => {
@@ -124,6 +128,39 @@ export default function Navbar() {
 
     return () => window.removeEventListener('scroll', listener);
   }, []);
+
+  useEffect(() => {
+    const filter = document.getElementById('filter-input');
+
+    const onBlur = () => {
+      setFilterValue((prevValue) => {
+        if (!prevValue) {
+          setExpanded(false);
+        }
+
+        return prevValue;
+      });
+    };
+
+    filter?.addEventListener('blur', onBlur);
+
+    return () => {
+      filter?.removeEventListener('blur', onBlur);
+    };
+  }, []);
+
+  useEffect(() => {
+    const filter = document.getElementById('filter-input');
+    if (expanded) {
+      filter?.focus();
+    }
+  }, [expanded]);
+
+  const handleFilterClose = () => {
+    setFilterValue('');
+    setExpanded(false);
+  };
+
   return (
     <Container isOnTop={isOnTop}>
       <Grid container sx={{ alignItems: 'center', height: '100%', width: '100%' }}>
@@ -149,14 +186,24 @@ export default function Navbar() {
         </Grid>
       </Grid>
       <SecondMenu>
-        <Grid container columnSpacing={4} sx={{ alignItems: 'center', height: '100%' }}>
-          <Grid item height="50%">
-            <FilterContainer extended={extended}>
-              <Box onClick={() => setExtended(true)} className="icon">
+        <Grid container columnSpacing={2} sx={{ alignItems: 'center', height: '100%' }}>
+          <Grid item sx={{ height: '50%' }}>
+            <FilterContainer expanded={expanded}>
+              <Box onClick={() => setExpanded(true)} className="icon">
                 <SearchIcon sx={{ fontSize: 25 }} />
               </Box>
-              <input type="text" />
-              <Box onClick={() => setExtended(false)} className="icon">
+              <input
+                type="text"
+                id="filter-input"
+                placeholder="Título, gente e gênero"
+                value={filterValue}
+                onChange={(e) => setFilterValue(e.target.value)}
+              />
+              <Box
+                onClick={handleFilterClose}
+                sx={{ display: filterValue ? 'inline' : 'none' }}
+                className="icon"
+              >
                 <CloseIcon sx={{ fontSize: 25 }} />
               </Box>
             </FilterContainer>

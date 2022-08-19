@@ -11,6 +11,7 @@ const Button = styled.button<{ color?: string, bgColor?: string, bgHoverColor?: 
   border-radius: 5px;
   display: flex;
   align-items: center;
+  border: none;
 
   &:hover {
     background-color: ${({ bgHoverColor }) => bgHoverColor || 'rgba(109, 109, 110, 0.4)'};

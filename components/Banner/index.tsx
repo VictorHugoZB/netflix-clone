@@ -9,7 +9,7 @@ const Background = styled.div<{ url: string }>`
   height: 110vh;
   background-image:
     linear-gradient(to bottom, transparent 80%, #141414),
-    linear-gradient(to right, #000 30%, transparent),
+    linear-gradient(to right, #000 10%, transparent),
     ${({ url }) => `url(${url})`};
   background-size: cover;
   position: absolute;
@@ -18,7 +18,7 @@ const Background = styled.div<{ url: string }>`
 
 const ContentContainer = styled.div`
   width: 100%;
-  height: 90vh;
+  height: 85vh;
   position: relative;
 `;
 
@@ -36,20 +36,21 @@ const Title = styled.h1`
 
 const P = styled.p`
  padding: .5rem 0 1rem;
- color: #ccc;
+ color: white;
  line-height: 1.4;
+ font-weight: bold;
 `;
 
 const truncate = (str: string) => (str.length > 500 ? `${str.slice(0, 407)}...` : str);
 
-export default function Banner({ movie }: { movie: any }) {
+export default function Banner({ show }: { show: any }) {
   return (
     <>
-      <Background url={`${BASE_IMG}/${movie?.backdrop_path}`} />
+      <Background url={`${BASE_IMG}/${show?.backdrop_path}`} />
       <ContentContainer>
         <Info>
-          <Title>{movie?.title || ''}</Title>
-          <P>{truncate(movie?.overview || '')}</P>
+          <Title>{show?.title || show?.name || ''}</Title>
+          <P>{truncate(show?.overview || '')}</P>
           <MainButton Icon={ErrorOutlineIcon} onClick={() => {}}>Mais informações</MainButton>
         </Info>
       </ContentContainer>

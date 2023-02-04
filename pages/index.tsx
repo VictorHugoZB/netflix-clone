@@ -4,6 +4,7 @@ import allData from '../data';
 import Banner from '../components/Banner';
 import MovieRow from '../components/MovieRow';
 import Footer from '../components/Footer';
+import { Collections, MovieCollection, Show } from '../types';
 
 const Content = styled.div`
   z-index: 1;
@@ -19,28 +20,25 @@ const Container = styled.div`
 `;
 
 function Home() {
-  const [data, setData] = useState([]);
-  const [show, setShow] = useState();
+  const [data, setData] = useState<MovieCollection[]>([]);
+  const [show, setShow] = useState<Show | null>(null);
 
   useEffect(() => {
-    const dataPromises = Object.keys(allData).map((f) => allData[f]());
+    const dataPromises = Object.keys(allData).map((f) => allData[f as keyof Collections]());
     Promise.all(dataPromises).then((d) => setData(d));
   }, []);
 
   useEffect(() => {
     if (data.length) {
-      console.log(data[0]);
-      let selectedShow = {};
-      while (!selectedShow.backdrop_path || !selectedShow.overview) {
+      let selectedShow = {} as Show;
+      while (!selectedShow?.backdrop_path || !selectedShow?.overview) {
         const randCategory = data[Math.floor(Math.random() * data.length)];
-        const showsList = randCategory.res.data.results;
+        const showsList = randCategory.res;
         selectedShow = showsList[Math.floor(Math.random() * showsList.length)];
       }
       setShow(selectedShow);
     }
   }, [data]);
-
-  const getShowType = (info) => (info.res.config.url.includes('/movie/') ? 'movie' : 'series');
 
   return (
     <Container>
@@ -50,8 +48,8 @@ function Home() {
           <MovieRowContainer key={info?.id}>
             <MovieRow
               listTitle={info.title}
-              movieList={info.res.data.results}
-              type={getShowType(info)}
+              movieList={info.res}
+              type={info.type}
             />
           </MovieRowContainer>
         ))}

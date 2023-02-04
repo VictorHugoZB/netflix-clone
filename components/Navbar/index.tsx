@@ -102,10 +102,6 @@ const navigateItems = [
     text: 'Bombando',
     link: '/browse',
   },
-  {
-    text: 'Minha Lista',
-    link: '/browse',
-  },
 ];
 
 export default function Navbar() {

@@ -21,7 +21,7 @@ const Container = styled.div`
 
 function Home() {
   const [data, setData] = useState<MovieCollection[]>([]);
-  const [show, setShow] = useState<Show | null>(null);
+  const [showList, setShowList] = useState<Show[]>([]);
 
   useEffect(() => {
     const dataPromises = Object.keys(allData).map((f) => allData[f as keyof Collections]());
@@ -30,19 +30,15 @@ function Home() {
 
   useEffect(() => {
     if (data.length) {
-      let selectedShow = {} as Show;
-      while (!selectedShow?.backdrop_path || !selectedShow?.overview) {
-        const randCategory = data[Math.floor(Math.random() * data.length)];
-        const showsList = randCategory.res;
-        selectedShow = showsList[Math.floor(Math.random() * showsList.length)];
-      }
-      setShow(selectedShow);
+      const randCategory = data.find((m) => m.id === 'topratedmovies');
+      const currentShowList = randCategory?.res || [];
+      setShowList(currentShowList);
     }
   }, [data]);
 
   return (
     <Container>
-      <Banner show={show} />
+      <Banner showList={showList} />
       <Content>
         {data.map((info) => (
           <MovieRowContainer key={info?.id}>

@@ -1,11 +1,15 @@
+type Id = 'nowplayingmovies' | 'topratedmovies' | 'popularmovies' | 'popularseries' | 'topratedseries' | 'ontheairseries';
+
 interface Show {
   backdrop_path: string,
   overview: string
   id: string
+  title?: string
+  name?: string
 }
 
 interface MovieCollection {
-  id: string,
+  id: Id,
   title: string,
   res: Show[];
   type: 'movie' | 'series'

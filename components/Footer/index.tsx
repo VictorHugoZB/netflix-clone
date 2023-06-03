@@ -14,6 +14,7 @@ const Container = styled.div`
 const Anchor = styled.a`
   text-decoration: none;
   padding: 0 1rem;
+  transition: all .3s ease-in-out;
 `;
 
 const P = styled.p`

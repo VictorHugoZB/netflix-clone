@@ -1,5 +1,5 @@
 type Id = 'nowplayingmovies' | 'topratedmovies' | 'popularmovies' | 'popularseries' | 'topratedseries' | 'ontheairseries';
-type MediaType = 'tv' | 'movie'
+type MediaType = 'tv' | 'movie' | 'person'
 
 interface Show {
   backdrop_path: string,
@@ -8,6 +8,7 @@ interface Show {
   title?: string
   name?: string
   media_type: MediaType
+  known_for?: Show[]
 }
 
 interface MovieCollection {

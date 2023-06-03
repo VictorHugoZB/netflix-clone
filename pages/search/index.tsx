@@ -25,7 +25,19 @@ export default function Search() {
   const search = () => {
     searchItems(q)
       .then(({ results }) => {
-        setShows(results.filter((show: Show) => !!show.backdrop_path));
+        const newResults = results
+          .reduce((arr: Show[], r: Show) => {
+            if (r.media_type === 'person') {
+              arr.push(...(r.known_for || []));
+            } else {
+              arr.push(r);
+            }
+
+            return arr;
+          }, [])
+          .filter((r: Show) => !!r.backdrop_path);
+
+        setShows(newResults);
       })
       .catch((e) => console.error(e));
   };
@@ -33,7 +45,7 @@ export default function Search() {
   useEffect(() => {
     if (q) {
       clearTimeout(timeoutRef.current);
-      timeoutRef.current = window.setTimeout(() => search(), 500);
+      timeoutRef.current = window.setTimeout(() => search(), 300);
     }
   }, [q]);
 

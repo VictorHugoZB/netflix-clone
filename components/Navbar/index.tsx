@@ -202,7 +202,7 @@ export default function Navbar() {
               <input
                 type="text"
                 id="filter-input"
-                placeholder="Título e pessoas"
+                placeholder="Séries, filmes e pessoas"
                 value={filterValue}
                 onChange={(e) => setFilterValue(e.target.value)}
               />

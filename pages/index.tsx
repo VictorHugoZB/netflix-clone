@@ -50,7 +50,6 @@ function Home() {
           </MovieRowContainer>
         ))}
       </Content>
-      <Footer />
     </Container>
   );
 }

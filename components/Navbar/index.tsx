@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CloseIcon from '@mui/icons-material/Close';
+import { useRouter } from 'next/router';
 import ProfileIcon from '../ProfileIcon';
 
 const Container = styled.div<{ isOnTop: boolean }>`
@@ -109,6 +110,8 @@ export default function Navbar() {
   const [filterValue, setFilterValue] = useState('');
   const [expanded, setExpanded] = useState(false);
 
+  const router = useRouter();
+
   useEffect(() => {
     const listener = () => {
       if (window.scrollY > 0) {
@@ -152,6 +155,14 @@ export default function Navbar() {
     }
   }, [expanded]);
 
+  useEffect(() => {
+    if (filterValue && filterValue.length > 0) {
+      router.push(`/search?q=${encodeURI(filterValue)}`);
+    } else {
+      router.push('/');
+    }
+  }, [filterValue]);
+
   const handleFilterClose = () => {
     setFilterValue('');
     setExpanded(false);
@@ -191,7 +202,7 @@ export default function Navbar() {
               <input
                 type="text"
                 id="filter-input"
-                placeholder="Título, gente e gênero"
+                placeholder="Título e gente"
                 value={filterValue}
                 onChange={(e) => setFilterValue(e.target.value)}
               />

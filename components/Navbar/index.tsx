@@ -89,19 +89,19 @@ const FilterContainer = styled.div<{ expanded: boolean }>`
 const navigateItems = [
   {
     text: 'Inicio',
-    link: '/browse',
+    link: '/',
   },
   {
     text: 'Filmes',
-    link: '/browse',
+    link: '/',
   },
   {
     text: 'Séries',
-    link: '/browse',
+    link: '/',
   },
   {
     text: 'Bombando',
-    link: '/browse',
+    link: '/',
   },
 ];
 
@@ -172,8 +172,8 @@ export default function Navbar() {
     <Container isOnTop={isOnTop}>
       <Grid container sx={{ alignItems: 'center', height: '100%', width: '100%' }}>
         <Grid item sx={{ height: '85%', paddingRight: '2rem' }}>
-          <Link href="/browse" passHref>
-            <a href="/browse">
+          <Link href="/" passHref>
+            <a href="/">
               <img src="/assets/logos/netflix_logo.svg" alt="Logo da Netflix" height="100%" />
             </a>
           </Link>
@@ -202,7 +202,7 @@ export default function Navbar() {
               <input
                 type="text"
                 id="filter-input"
-                placeholder="Título e gente"
+                placeholder="Título e pessoas"
                 value={filterValue}
                 onChange={(e) => setFilterValue(e.target.value)}
               />

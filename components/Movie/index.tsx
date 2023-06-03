@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 import { useEffect, useState } from 'react';
 import useWindowSize from '../../hooks/useWindowSize';
-import { getMovieById, getSeriesById } from '../../data';
+import { getShowById } from '../../data';
+import { MediaType } from '../../types';
 
 const Container = styled.div<{ width: number }>`
   width: ${({ width }) => `${width}px`};
@@ -22,17 +23,13 @@ const Image = styled.img`
 
 const BASE_IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
-export default function Movie({ showId, type }: { showId: string, type: 'movie' | 'series' }) {
+export default function Movie({ showId, type }: { showId: string, type: MediaType }) {
   const [showInfo, setShowInfo] = useState<any>();
   const [cardWidth, setCardWidth] = useState<number>(0);
   const { width } = useWindowSize();
 
   useEffect(() => {
-    if (type === 'movie') {
-      getMovieById(showId).then((info) => setShowInfo(info.data));
-    } else {
-      getSeriesById(showId).then((info) => setShowInfo(info.data));
-    }
+    getShowById(showId, type).then((info) => setShowInfo(info.data));
   }, [showId]);
 
   useEffect(() => {

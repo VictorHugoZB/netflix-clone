@@ -1,4 +1,5 @@
 type Id = 'nowplayingmovies' | 'topratedmovies' | 'popularmovies' | 'popularseries' | 'topratedseries' | 'ontheairseries';
+type MediaType = 'tv' | 'movie'
 
 interface Show {
   backdrop_path: string,
@@ -6,13 +7,14 @@ interface Show {
   id: string
   title?: string
   name?: string
+  media_type: MediaType
 }
 
 interface MovieCollection {
   id: Id,
   title: string,
   res: Show[];
-  type: 'movie' | 'series'
+  type: MediaType
 }
 
 interface Collections {
@@ -23,4 +25,5 @@ export type {
   MovieCollection,
   Collections,
   Show,
+  MediaType,
 };

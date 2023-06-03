@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import allData from '../data';
 import Banner from '../components/Banner';
 import MovieRow from '../components/MovieRow';
-import Footer from '../components/Footer';
 import { Collections, MovieCollection, Show } from '../types';
 
 const Content = styled.div`

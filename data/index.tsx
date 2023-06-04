@@ -2,8 +2,8 @@ import axios from 'axios';
 import { Collections, MediaType, MovieCollection } from '../types';
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-const BASE_URL = 'https://api.themoviedb.org/3';
-const QUERY_URL = `api_key=${API_KEY}&language=pt-BR`;
+export const BASE_URL = 'https://api.themoviedb.org/3';
+export const QUERY_URL = `api_key=${API_KEY}&language=pt-BR`;
 
 const collections: Collections = {
   getNowPlayingMovies: async (): Promise<MovieCollection> => ({

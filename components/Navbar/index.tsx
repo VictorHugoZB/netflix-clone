@@ -101,7 +101,7 @@ const navigateItems = [
   },
   {
     text: 'Bombando',
-    link: '/',
+    link: '/trending',
   },
 ];
 

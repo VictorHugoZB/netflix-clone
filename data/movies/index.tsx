@@ -2,10 +2,7 @@ import axios from 'axios';
 import {
   MediaType, MovieCollection, Genre,
 } from '../../types';
-
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-const BASE_URL = 'https://api.themoviedb.org/3';
-const QUERY_URL = `api_key=${API_KEY}&language=pt-BR`;
+import { BASE_URL, QUERY_URL } from '..';
 
 const getMovieCollections = async (): Promise<MovieCollection[]> => {
   const genres = (await axios.get(`${BASE_URL}/genre/movie/list?${QUERY_URL}`)).data.genres as Genre[];

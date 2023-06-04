@@ -158,7 +158,7 @@ export default function Navbar() {
   useEffect(() => {
     if (filterValue && filterValue.length > 0) {
       router.push(`/search?q=${encodeURI(filterValue)}`);
-    } else {
+    } else if (router.pathname.includes('search')) {
       router.push('/');
     }
   }, [filterValue]);

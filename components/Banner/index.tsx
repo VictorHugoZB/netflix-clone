@@ -121,7 +121,7 @@ export default function Banner({ showList, title }: { showList?: Show[], title?:
       <Head>
         <title>{title || 'Netflix'}</title>
       </Head>
-      <Background url={`${BASE_IMG}/${show?.backdrop_path}`} />
+      {show?.backdrop_path && <Background url={`${BASE_IMG}/${show?.backdrop_path}`} />}
       <ContentContainer>
         <NextButton onClick={onClickNext}>
           <EastIcon sx={{ color: 'white', fontSize: '2rem', paddingTop: '5px' }} />

@@ -22,6 +22,12 @@ const LoadContainer = styled.div`
   padding: 1rem 0;
 `;
 
+function removeDuplicates<T extends { id: number | string }>(arr: T[]) {
+  return arr.filter((value, index, self) => index === self.findIndex((t) => (
+    t.id === value.id
+  )));
+}
+
 function debounce(fn: () => void, timeout = 1000) {
   let timerId: number | undefined;
 
@@ -55,7 +61,7 @@ export default function Movies() {
     getTrending(currentPage)
       .then((result) => {
         setPage(currentPage + 1);
-        setData((oldData) => ([...oldData, ...result]));
+        setData((oldData) => removeDuplicates([...oldData, ...result]));
       })
       .catch((e) => console.error(e))
       .finally(() => setIsLoading(false));

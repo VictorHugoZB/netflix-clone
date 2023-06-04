@@ -5,16 +5,16 @@ import Banner from '../components/Banner';
 import MovieRow from '../components/MovieRow';
 import { Collections, MovieCollection, Show } from '../types';
 
-const Content = styled.div`
+export const Content = styled.div`
   z-index: 1;
   position: relative;
 `;
 
-const MovieRowContainer = styled.div`
+export const MovieRowContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-const Container = styled.div`
+export const Container = styled.div`
   max-width: 100vw;
 `;
 
@@ -29,7 +29,7 @@ function Home() {
 
   useEffect(() => {
     if (data.length) {
-      const randCategory = data.find((m) => m.id === 'topratedmovies');
+      const randCategory = data.find((m) => m.id === 'nowplayingmovies');
       const currentShowList = randCategory?.res || [];
       setShowList(currentShowList);
     }

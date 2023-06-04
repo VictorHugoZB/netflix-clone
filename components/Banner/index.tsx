@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import EastIcon from '@mui/icons-material/East';
 import { useEffect, useRef, useState } from 'react';
+import Head from 'next/head';
 import MainButton from '../Shared/Buttons/MainButton';
 import { Show } from '../../types';
 
@@ -67,7 +68,7 @@ const P = styled.p`
 
 const truncate = (str: string) => (str.length > 500 ? `${str.slice(0, 407)}...` : str);
 
-export default function Banner({ showList }: { showList?: Show[] }) {
+export default function Banner({ showList, title }: { showList?: Show[], title?: string }) {
   const [showIdx, setShowIdx] = useState(0);
   const [show, setShow] = useState<Show>();
 
@@ -82,7 +83,7 @@ export default function Banner({ showList }: { showList?: Show[] }) {
       do {
         idx = (idx + 1) % showList.length;
         selectedShow = showList[idx];
-      } while (!selectedShow?.backdrop_path || !selectedShow?.overview);
+      } while (!selectedShow?.backdrop_path || !selectedShow?.overview?.length);
 
       setShow(selectedShow);
     }
@@ -95,7 +96,11 @@ export default function Banner({ showList }: { showList?: Show[] }) {
   */
   useEffect(() => {
     if (showList?.length) {
-      setShow(showList[showIdx]);
+      if (showList[showIdx].overview && showList[showIdx].backdrop_path) {
+        setShow(showList[showIdx]);
+      } else {
+        getNextIdx();
+      }
 
       intervalRef.current = window.setInterval(() => {
         setShowIdx((oldIdx) => getNextIdx(oldIdx));
@@ -113,6 +118,9 @@ export default function Banner({ showList }: { showList?: Show[] }) {
 
   return (
     <>
+      <Head>
+        <title>{title || 'Netflix'}</title>
+      </Head>
       <Background url={`${BASE_IMG}/${show?.backdrop_path}`} />
       <ContentContainer>
         <NextButton onClick={onClickNext}>

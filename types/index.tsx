@@ -1,5 +1,10 @@
-type Id = 'nowplayingmovies' | 'topratedmovies' | 'popularmovies' | 'popularseries' | 'topratedseries' | 'ontheairseries';
+type Id = 'nowplayingmovies' | 'topratedmovies' | 'popularmovies' | 'popularseries' | 'topratedseries' | 'ontheairseries' | string | number;
 type MediaType = 'tv' | 'movie' | 'person'
+
+interface Genre {
+  id: number
+  name: string
+}
 
 interface Show {
   backdrop_path: string,
@@ -27,4 +32,5 @@ export type {
   Collections,
   Show,
   MediaType,
+  Genre,
 };

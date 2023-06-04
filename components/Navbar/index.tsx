@@ -93,11 +93,11 @@ const navigateItems = [
   },
   {
     text: 'Filmes',
-    link: '/',
+    link: '/movies',
   },
   {
     text: 'Séries',
-    link: '/',
+    link: '/series',
   },
   {
     text: 'Bombando',

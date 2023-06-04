@@ -10,6 +10,7 @@ interface Show {
   backdrop_path: string,
   overview: string
   id: string
+  poster_path?: string,
   title?: string
   name?: string
   media_type: MediaType

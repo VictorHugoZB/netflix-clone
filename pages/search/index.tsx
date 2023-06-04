@@ -35,7 +35,9 @@ export default function Search() {
 
             return arr;
           }, [])
-          .filter((r: Show) => !!r.backdrop_path);
+          .filter((r: Show) => !!r.poster_path);
+
+        console.log(newResults);
 
         setShows(newResults);
       })

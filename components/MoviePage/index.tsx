@@ -18,7 +18,7 @@ const MoviePageContainer = styled.div`
 export default function MoviePage({ shows }: { shows: Show[] }) {
   return (
     <MoviePageContainer>
-      {shows.filter((show) => !!show.backdrop_path).map((show) => (
+      {shows.filter((show) => !!show.poster_path).map((show) => (
         <Movie key={show.id} showId={show.id} type={show.media_type} />
       ))}
     </MoviePageContainer>

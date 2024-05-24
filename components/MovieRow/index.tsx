@@ -52,6 +52,21 @@ const RowContainer = styled.div`
     right: 0;
   }
 
+  @media(max-width: 900px) {
+    & button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    & button:nth-of-type(1) {
+      left: 0;
+    }
+  
+    & button:nth-of-type(2) {
+      right: 0;
+    }
+  }
 `;
 
 const MovieRowContainer = styled.div<{ offsetX: number }>`
@@ -65,10 +80,18 @@ const MovieRowContainer = styled.div<{ offsetX: number }>`
   & * {
     flex-shrink: 0;
   }
+
+  @media(max-width: 900px) {
+    padding: 0 1rem 0 1rem;
+  }
 `;
 
 const Title = styled.h2`
   padding: 15px 40px;
+
+  @media(max-width: 900px) {
+    padding: 15px 1rem;
+  }
 `;
 
 export default function MovieRow(

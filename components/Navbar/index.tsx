@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import {
+  Dispatch, SetStateAction, useEffect, useState,
+} from 'react';
 import Link from 'next/link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -7,6 +9,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import CloseIcon from '@mui/icons-material/Close';
 import { useRouter } from 'next/router';
+import MenuIcon from '@mui/icons-material/Menu';
+import Button from '@mui/material/Button';
 import ProfileIcon from '../ProfileIcon';
 
 const Container = styled.div<{ isOnTop: boolean }>`
@@ -19,6 +23,10 @@ const Container = styled.div<{ isOnTop: boolean }>`
   transition: background-color .3s;
   z-index: 99;
   padding: 0 3rem;
+
+  @media(max-width: 450px) {
+    padding: 0 1rem;
+  }
 `;
 
 const ItemText = styled.p`
@@ -105,7 +113,9 @@ const navigateItems = [
   },
 ];
 
-export default function Navbar() {
+export default function Navbar(
+  { setSandwichOpen }: { setSandwichOpen: Dispatch<SetStateAction<boolean>> },
+) {
   const [isOnTop, setIsOnTop] = useState(true);
   const [filterValue, setFilterValue] = useState('');
   const [expanded, setExpanded] = useState(false);
@@ -170,7 +180,17 @@ export default function Navbar() {
 
   return (
     <Container isOnTop={isOnTop}>
-      <Grid container sx={{ alignItems: 'center', height: '100%', width: '100%' }}>
+      <Grid
+        container
+        sx={{
+          alignItems: 'center', height: '100%', width: '100%',
+        }}
+      >
+        <Grid item sx={{ paddingRight: { xs: '0.5rem', sm: '2rem' }, display: { sm: 'none' }, cursor: 'pointer' }}>
+          <Button onClick={() => setSandwichOpen((old) => !old)}>
+            <MenuIcon fontSize="large" />
+          </Button>
+        </Grid>
         <Grid item sx={{ height: '85%', paddingRight: '2rem' }}>
           <Link href="/" passHref>
             <a href="/">
@@ -178,7 +198,7 @@ export default function Navbar() {
             </a>
           </Link>
         </Grid>
-        <Grid item>
+        <Grid item sx={{ display: { xs: 'none', sm: 'block' } }}>
           <Grid container>
             {navigateItems.map((item) => (
               <Grid item key={item.text} sx={{ padding: '0 .5rem' }}>

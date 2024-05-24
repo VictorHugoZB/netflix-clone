@@ -9,6 +9,14 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media(max-width: 900px) {
+    width: 80%;
+    flex-direction: column;
+    & div {
+      margin-top: 2rem;
+    }
+  } 
 `;
 
 const Anchor = styled.a`
@@ -40,13 +48,30 @@ const P = styled.p`
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+  
+  & span:before {
+    content: " ";
+  }
 
+  @media(max-width: 900px) {
+    &:after {
+      transform: scaleX(1);
+    }
+
+    & span {
+      display: block;
+      margin-top: 0.2rem;
+    }
+  }
 `;
 
 export default function Footer() {
   return (
     <Container>
-      <P>Desenvolvido por Victor Hugo Zaninette Bernardino</P>
+      <P>
+        Desenvolvido por
+        <span>Victor Hugo Zaninette Bernardino</span>
+      </P>
       <div>
         <Anchor href="https://www.linkedin.com/in/victor-hugo-zaninette-bernardino-0a28011a6/" target="_blank">
           <LinkedInIcon sx={{ fontSize: 35 }} />

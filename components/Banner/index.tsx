@@ -19,6 +19,14 @@ const Background = styled.div<{ url: string }>`
   position: absolute;
   z-index: 0;
   transition: all 2s;
+
+  @media(max-width: 900px) {
+    background-image:
+    linear-gradient(to bottom, transparent 80%, #141414),
+    linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    ${({ url }) => `url(${url})`};
+    background-position: center
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -43,6 +51,12 @@ const NextButton = styled.button`
     background-color: rgba(109, 109, 110, 1);
     cursor: pointer;
   }
+
+  @media(max-width: 900px) {
+    width: 50px;
+    height: 50px;
+    right: 1rem;
+  }
 `;
 
 const Info = styled.div`
@@ -53,6 +67,11 @@ const Info = styled.div`
   padding: 40px;
 
   transition: all .3s;
+
+  @media(max-width: 900px) {
+    max-width: 100%;
+    margin-right: 3rem
+  }
 `;
 
 const Title = styled.h1`

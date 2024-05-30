@@ -90,7 +90,7 @@ export default function Movies() {
   return (
     <ContainerTrending>
       <Head>
-        <title>Bombando - Netflix</title>
+        <title>Bombando - Beeflix</title>
       </Head>
       <Content>
         <Title>Séries e filmes bombando</Title>

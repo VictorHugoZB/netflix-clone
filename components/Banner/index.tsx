@@ -138,7 +138,7 @@ export default function Banner({ showList, title }: { showList?: Show[], title?:
   return (
     <>
       <Head>
-        <title>{title || 'Netflix'}</title>
+        <title>{title || 'Beeflix'}</title>
       </Head>
       {show?.backdrop_path && <Background url={`${BASE_IMG}/${show?.backdrop_path}`} />}
       <ContentContainer>

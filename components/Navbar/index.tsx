@@ -191,10 +191,10 @@ export default function Navbar(
             <MenuIcon fontSize="large" />
           </Button>
         </Grid>
-        <Grid item sx={{ height: '85%', paddingRight: '2rem' }}>
+        <Grid item sx={{ height: '85%', paddingRight: '2rem', paddingTop: '8px' }}>
           <Link href="/" passHref>
             <a href="/">
-              <img src="/assets/logos/netflix_logo.svg" alt="Logo da Netflix" height="100%" />
+              <img src="/assets/logos/beeflix-logo-full.png" alt="Logo da Beeflix" height="90%" />
             </a>
           </Link>
         </Grid>
@@ -237,7 +237,7 @@ export default function Navbar(
           </Grid>
           <Grid item sx={{ height: '100%' }}>
             <IconArrowMenu>
-              <ProfileIcon height="55%" imageUrl="/assets/avatars/option1.png" />
+              <ProfileIcon height="55%" imageUrl="/assets/avatars/option2.png" />
               <ArrowDropDownIcon id="dropdown-arrow" />
             </IconArrowMenu>
           </Grid>

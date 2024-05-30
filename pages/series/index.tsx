@@ -16,7 +16,7 @@ export default function Movies() {
 
   return (
     <Container>
-      <Banner showList={data?.at(0)?.res || []} title="Séries - Netflix" />
+      <Banner showList={data?.at(0)?.res || []} title="Séries - Beeflix" />
       <Content>
         {data.map((info) => (
           <MovieRowContainer key={info?.id}>

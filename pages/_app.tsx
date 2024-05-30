@@ -17,8 +17,8 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <AppContainer>
       <Head>
-        <title>Netflix</title>
-        <link rel="icon" href="/assets/logos/n_netflix.png" />
+        <title>Beeflix</title>
+        <link rel="icon" href="/assets/logos/beeflix-logo.png" />
       </Head>
       <Navbar setSandwichOpen={setSandwichOpen} />
       <Sandwich open={sandwichOpen} />

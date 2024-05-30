@@ -4,7 +4,7 @@ import {
 } from '../../types';
 
 const getMovieCollections = async (): Promise<MovieCollection[]> => {
-  const genres = (await axios.get(`/api/moviedb/genre/movie/list`)).data.genres as Genre[];
+  const genres = (await axios.get('/api/moviedb/genre/movie/list')).data.genres as Genre[];
 
   const movieCollectionPromises = genres.map(async (genre) => ({
     id: genre.id,

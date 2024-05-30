@@ -1,11 +1,11 @@
 @font-face {
-  font-family: "Netflix Sans Regular";
-  src: url('/assets/fonts/NetflixSansRegular.ttf') format('ttf');
+  font-family: "Beeflix Sans Regular";
+  src: url('/assets/fonts/BeeflixSansRegular.ttf') format('ttf');
 }
 
 @font-face {
-  font-family: "Netflix Sans Bold";
-  src: url('/assets/fonts/NetflixSansBold.ttf') format('ttf');
+  font-family: "Beeflix Sans Bold";
+  src: url('/assets/fonts/BeeflixSansBold.ttf') format('ttf');
 }
 
 html,
@@ -24,11 +24,11 @@ a {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: "Netflix Sans Regular", "roboto", sans-serif;
+  font-family: "Beeflix Sans Regular", "roboto", sans-serif;
   color: white;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Netflix Sans Bold", "roboto", sans-serif;
+  font-family: "Beeflix Sans Bold", "roboto", sans-serif;
   color: white;
 }

@@ -44,7 +44,7 @@ export default function Sandwich({ open }: { open: boolean }) {
     <Container active={open}>
       <Ul>
         {navigateItems.map((item) => (
-          <li>
+          <li key={item.text}>
             <a href={item.link}>
               {item.text}
             </a>
